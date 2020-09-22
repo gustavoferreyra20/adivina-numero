@@ -69,6 +69,13 @@ public class VistaSwing extends javax.swing.JFrame implements IVista{
     public void iniciar() {
         setVisible(true);
     }
+    
+    @Override
+    public void reiniciar() {
+        this.setAyuda(null);
+        this.resetNumero();
+        this.resetIntentos();
+    }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents

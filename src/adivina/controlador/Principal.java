@@ -5,6 +5,7 @@
  */
 package adivina.controlador;
 
+import adivina.modelo.Modelo;
 import adivina.vista.IVista;
 import adivina.vista.VistaSwing;
 
@@ -16,7 +17,8 @@ public class Principal {
     
     public static void main(String[] args) {
         IVista vista = new VistaSwing("Adivinador");
-        Controlador juego = new Controlador(vista);
+        Modelo modelo = new Modelo();
+        Controlador juego = new Controlador(vista, modelo);
         juego.iniciar();
     }
 }

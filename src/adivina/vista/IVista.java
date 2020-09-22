@@ -32,4 +32,7 @@ public interface IVista {
     void addHandlerReiniciar(ActionListener al);
     
     void iniciar();
+
+    public void reiniciar();
+
 }
