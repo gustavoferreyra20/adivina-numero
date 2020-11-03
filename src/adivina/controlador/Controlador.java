@@ -5,6 +5,8 @@ import adivina.modelo.Modelo;
 import adivina.vista.IVista;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.io.IOException;
 
 class Controlador {
@@ -20,6 +22,7 @@ class Controlador {
     public void iniciar() {
         this.modelo.iniciar();
         this.vista.addHandlerJugar( new HandlerJugar() );
+        this.vista.addHandlerEnter( new HandlerEnter() );
         this.vista.addHandlerReiniciar( new HandlerReiniciar() );
         this.vista.iniciar();
     }
@@ -28,6 +31,7 @@ class Controlador {
         try{
             this.modelo.jugar(this.vista.getNumeroIngresado());
             this.vista.setAyuda(this.modelo.getNotificacion());
+            this.juegoTerminado(this.modelo.getJuegoTerminado());
         }catch(NumberFormatException e){
             this.vista.notificarUsuarioError("Ingrese un valor numérico");
         }catch(IOException e){
@@ -40,6 +44,12 @@ class Controlador {
         this.modelo.reiniciar();
         this.vista.reiniciar();
     }
+
+    private void juegoTerminado(boolean juegoTerminado) {
+        if(juegoTerminado){
+            this.vista.juegoTerminado();
+        }
+    }
     
     private class HandlerJugar implements ActionListener {
 
@@ -48,6 +58,26 @@ class Controlador {
             jugar();
         }
         
+    }
+    
+    private class HandlerEnter implements KeyListener {
+
+        @Override
+        public void keyPressed(KeyEvent e) {
+            if(e.getKeyCode() == KeyEvent.VK_ENTER){
+                jugar();
+            }
+        }
+        
+        @Override
+        public void keyReleased(KeyEvent e) {
+           
+        }
+        
+        @Override
+        public void keyTyped(KeyEvent e) {
+           
+        }
     }
     
     private class HandlerReiniciar implements ActionListener {

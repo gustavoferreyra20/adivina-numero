@@ -22,14 +22,19 @@ public class Modelo {
     private static final int MAX_NUM = 100; 
     private static final int MAX_INTENTOS = 7;
     private String notificacion;
+    private Adivinador adivinador;
+    private Boolean juegoTerminado;
     
     public void generarHistorial(){
         this.historial = new ArrayList<>();
     }
 
     public void iniciar() {
+        this.juegoTerminado = false;
          this.generarNumero();
+         System.out.println(this.numeroSecreto);
          this.historial = new ArrayList<>();
+         this.adivinador = new Adivinador(this.numeroSecreto);
     }
     
     private void generarNumero() {
@@ -39,9 +44,9 @@ public class Modelo {
 
     public void jugar(int numeroIngresado) throws IOException {
         this.numeroIngresado = numeroIngresado;
-            this.fueraDeLimites();
-            this.numRepetido();
-            this.adivinaMayorMenor();
+        this.fueraDeLimites();
+        this.numRepetido();
+        this.adivinaMayorMenor();
     }
     
     private void fueraDeLimites() throws IOException{
@@ -58,16 +63,15 @@ public class Modelo {
     
     private void adivinaMayorMenor(){
        
-        Adivinador adivinador = new Adivinador(this.numeroIngresado, this.numeroSecreto, this.MAX_INTENTOS, this.historial);
-        
-        if ( MAX_INTENTOS - this.historial.size() -1 > 0 ){
-        this.notificacion = (adivinador.adivinar().getMensaje());
-        switch(adivinador.adivinar()){
-            case MAYOR :
-        }
+        if ( MAX_INTENTOS - this.historial.size() -1 >= 0 ){
+            this.historial.add( this.numeroIngresado );
+            this.notificacion = (adivinador.adivinar(this.numeroIngresado).getMensaje());
+            if(adivinador.esCorrecto()){
+                this.juegoTerminado = true;
+            }
         }else{
             this.notificacion = "Te quedaste sin intentos, el numero era el "+this.numeroSecreto;
-            this.reiniciar();
+            this.juegoTerminado = true;
         }
       
     }
@@ -75,10 +79,13 @@ public class Modelo {
     public String getNotificacion(){
         return this.notificacion;
     }
+    
+    public boolean getJuegoTerminado(){
+        return this.juegoTerminado;
+    }
 
     public void reiniciar() {
-        this.historial.clear();
-        this.generarNumero();
+        this.iniciar();
     }
     
     

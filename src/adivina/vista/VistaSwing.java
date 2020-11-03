@@ -6,6 +6,7 @@
 package adivina.vista;
 
 import java.awt.event.ActionListener;
+import java.awt.event.KeyListener;
 import javax.swing.JOptionPane;
 
 /**
@@ -25,6 +26,12 @@ public class VistaSwing extends javax.swing.JFrame implements IVista{
         this.jButtonJugar.addActionListener(al);
     }
     
+    @Override
+    public void addHandlerEnter(KeyListener e)
+    {
+       this.jTextFieldNumero.addKeyListener(e);
+    }
+
     @Override
     public int getNumeroIngresado() {
         return Integer.parseInt(this.jTextFieldNumero.getText());
@@ -75,8 +82,14 @@ public class VistaSwing extends javax.swing.JFrame implements IVista{
         this.setAyuda(null);
         this.resetNumero();
         this.resetIntentos();
+        jButtonJugar.setEnabled(true);
     }
 
+    @Override
+    public void juegoTerminado() {
+        jButtonJugar.setEnabled(false);
+    }
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -133,7 +146,7 @@ public class VistaSwing extends javax.swing.JFrame implements IVista{
                             .addComponent(jLabelIntentos)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addComponent(jTextFieldIntentos, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(21, Short.MAX_VALUE))
+                .addContainerGap(95, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

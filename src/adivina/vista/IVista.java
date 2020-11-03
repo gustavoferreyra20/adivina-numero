@@ -6,6 +6,7 @@
 package adivina.vista;
 
 import java.awt.event.ActionListener;
+import java.awt.event.KeyListener;
 
 /**
  *
@@ -33,6 +34,10 @@ public interface IVista {
     
     void iniciar();
 
-    public void reiniciar();
+    void reiniciar();
+
+    void juegoTerminado();
+
+    void addHandlerEnter(KeyListener e);
 
 }
