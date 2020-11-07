@@ -61,11 +61,6 @@ public class VistaSwing extends javax.swing.JFrame implements IVista{
     public void resetNumero() {
         this.jTextFieldNumero.setText(null);
     }
-
-    @Override
-    public void resetIntentos() {
-        this.jTextFieldIntentos.setText(null);
-    }
     
     @Override
     public void addHandlerReiniciar(ActionListener al){
@@ -81,13 +76,14 @@ public class VistaSwing extends javax.swing.JFrame implements IVista{
     public void reiniciar() {
         this.setAyuda(null);
         this.resetNumero();
-        this.resetIntentos();
         jButtonJugar.setEnabled(true);
+        jTextFieldNumero.setEnabled(true);
     }
 
     @Override
     public void juegoTerminado() {
         jButtonJugar.setEnabled(false);
+        jTextFieldNumero.setEnabled(false);
     }
     
     @SuppressWarnings("unchecked")

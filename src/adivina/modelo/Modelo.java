@@ -18,6 +18,7 @@ public class Modelo {
     private ArrayList<Integer> historial;             
     private int numeroSecreto;
     private int numeroIngresado;
+    private int intentosRestantes;
     private static final int MIN_NUM = 1; 
     private static final int MAX_NUM = 100; 
     private static final int MAX_INTENTOS = 7;
@@ -31,10 +32,10 @@ public class Modelo {
 
     public void iniciar() {
         this.juegoTerminado = false;
-         this.generarNumero();
-         System.out.println(this.numeroSecreto);
-         this.historial = new ArrayList<>();
-         this.adivinador = new Adivinador(this.numeroSecreto);
+        this.generarNumero();
+        this.historial = new ArrayList<>();
+        this.intentosRestantes = MAX_INTENTOS;
+        this.adivinador = new Adivinador(this.numeroSecreto);
     }
     
     private void generarNumero() {
@@ -51,7 +52,7 @@ public class Modelo {
     
     private void fueraDeLimites() throws IOException{
         if (this.numeroIngresado < MIN_NUM || this.numeroIngresado > MAX_NUM){
-            throw new IOException("Ingrese un número entre "+MIN_NUM+" y "+MAX_NUM); 
+            throw new IOException("Ingrese un número entre " + MIN_NUM + " y " + MAX_NUM + "inclusives"); 
         }
     }
     
@@ -62,18 +63,13 @@ public class Modelo {
     }
     
     private void adivinaMayorMenor(){
-       
-        if ( MAX_INTENTOS - this.historial.size() -1 >= 0 ){
-            this.historial.add( this.numeroIngresado );
-            this.notificacion = (adivinador.adivinar(this.numeroIngresado).getMensaje());
-            if(adivinador.esCorrecto()){
-                this.juegoTerminado = true;
-            }
-        }else{
-            this.notificacion = "Te quedaste sin intentos, el numero era el "+this.numeroSecreto;
-            this.juegoTerminado = true;
-        }
-      
+               
+        this.historial.add( this.numeroIngresado );
+        this.notificacion = (adivinador.adivinar(this.numeroIngresado).getMensaje());
+        this.intentosRestantes--;
+        this.juegoTerminado = adivinador.esCorrecto();
+        this.checkIntentos();
+              
     }
     
     public String getNotificacion(){
@@ -83,9 +79,20 @@ public class Modelo {
     public boolean getJuegoTerminado(){
         return this.juegoTerminado;
     }
+    
+    public int getIntentosRestantes(){
+        return this.intentosRestantes;
+    }
 
     public void reiniciar() {
         this.iniciar();
+    }
+
+    private void checkIntentos() {
+        if ( !this.juegoTerminado && this.intentosRestantes - 1 < 0){
+            this.notificacion = "Te quedaste sin intentos, el numero era el " + this.numeroSecreto;
+            this.juegoTerminado = true;
+        }
     }
     
     

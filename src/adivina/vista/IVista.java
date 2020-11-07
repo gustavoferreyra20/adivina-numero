@@ -28,8 +28,6 @@ public interface IVista {
     
     void resetNumero();
     
-    void resetIntentos();
-    
     void addHandlerReiniciar(ActionListener al);
     
     void iniciar();

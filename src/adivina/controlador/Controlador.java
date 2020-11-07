@@ -24,6 +24,7 @@ class Controlador {
         this.vista.addHandlerJugar( new HandlerJugar() );
         this.vista.addHandlerEnter( new HandlerEnter() );
         this.vista.addHandlerReiniciar( new HandlerReiniciar() );
+        this.vista.setIntentos(this.modelo.getIntentosRestantes());
         this.vista.iniciar();
     }
     
@@ -31,6 +32,7 @@ class Controlador {
         try{
             this.modelo.jugar(this.vista.getNumeroIngresado());
             this.vista.setAyuda(this.modelo.getNotificacion());
+            this.vista.setIntentos(this.modelo.getIntentosRestantes());
             this.juegoTerminado(this.modelo.getJuegoTerminado());
         }catch(NumberFormatException e){
             this.vista.notificarUsuarioError("Ingrese un valor numérico");
@@ -43,11 +45,14 @@ class Controlador {
     private void reiniciar() {
         this.modelo.reiniciar();
         this.vista.reiniciar();
+        this.vista.setIntentos(this.modelo.getIntentosRestantes());
     }
 
     private void juegoTerminado(boolean juegoTerminado) {
         if(juegoTerminado){
             this.vista.juegoTerminado();
+        }else{
+            this.vista.resetNumero();
         }
     }
     
