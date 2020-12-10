@@ -9,14 +9,14 @@ package adivina.modelo;
  *
  * @author ferre
  */
-public enum Resultados {
+public enum Resultado {
     MAYOR("Muy alto"),
     MENOR("Muy bajo"),
     IGUAL("Correcto");
 
     private String mensaje;
 
-    private Resultados(String mensaje) {
+    private Resultado(String mensaje) {
         this.mensaje = mensaje;
     }
 

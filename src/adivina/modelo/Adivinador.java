@@ -5,8 +5,6 @@
  */
 package adivina.modelo;
 
-import java.util.ArrayList;
-
 /**
  *
  * @author ferre
@@ -22,21 +20,21 @@ public class Adivinador {
 
     
     
-    public Resultados adivinar(int numeroIngresado){
+    public Resultado adivinar(int numeroIngresado){
         if (numeroIngresado == numeroSecreto){
             this.esCorrecto = true;
-            return Resultados.IGUAL;
+            return Resultado.IGUAL;
         }else{
             if ( numeroIngresado < this.numeroSecreto ){
-                return Resultados.MENOR;
+                return Resultado.MENOR;
             }else{
-                return Resultados.MAYOR;
+                return Resultado.MAYOR;
             }          
         }
        
     }
     
-    public boolean esCorrecto(){
+    public boolean getEsCorrecto(){
         return esCorrecto;
     }
     
