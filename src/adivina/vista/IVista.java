@@ -38,4 +38,7 @@ public interface IVista {
 
     void addHandlerEnter(KeyListener e);
 
+    void addHandlerAyuda(ActionListener al);
+
+    public void mostrarAyuda(String ayuda);
 }

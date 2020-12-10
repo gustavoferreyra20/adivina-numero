@@ -25,6 +25,7 @@ public class Modelo {
     private String notificacion;
     private Adivinador adivinador;
     private Boolean juegoTerminado;
+    private String ayuda;
     
     public void generarHistorial(){
         this.historial = new ArrayList<>();
@@ -36,6 +37,7 @@ public class Modelo {
         this.historial = new ArrayList<>();
         this.intentosRestantes = MAX_INTENTOS;
         this.adivinador = new Adivinador(this.numeroSecreto);
+        SetAyudaBase();
     }
     
     private void generarNumero() {
@@ -72,8 +74,16 @@ public class Modelo {
               
     }
     
+    public void SetAyudaBase(){
+        this.ayuda = "Tienes 7 intentos para adivinar un numero entre 1 y 100, si divides donde podría estar el número por 2, no podrás perder nunca.";
+    }
+    
     public String getNotificacion(){
         return this.notificacion;
+    }
+    
+    public String getAyuda(){
+        return this.ayuda;
     }
     
     public boolean getJuegoTerminado(){

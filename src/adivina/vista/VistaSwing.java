@@ -86,6 +86,16 @@ public class VistaSwing extends javax.swing.JFrame implements IVista{
         jTextFieldNumero.setEnabled(false);
     }
     
+    @Override
+    public void addHandlerAyuda(ActionListener al){
+        this.jButtonAyuda.addActionListener(al);
+    }
+    
+    @Override
+    public void mostrarAyuda(String ayuda) {
+        JOptionPane.showMessageDialog(this, ayuda, "Ayuda", JOptionPane.INFORMATION_MESSAGE);
+    }
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -97,6 +107,7 @@ public class VistaSwing extends javax.swing.JFrame implements IVista{
         jLabelIntentos = new javax.swing.JLabel();
         jTextFieldIntentos = new javax.swing.JTextField();
         jLabelAyuda = new javax.swing.JLabel();
+        jButtonAyuda = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -121,6 +132,11 @@ public class VistaSwing extends javax.swing.JFrame implements IVista{
 
         jLabelAyuda.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
 
+        jButtonAyuda.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        jButtonAyuda.setText("?");
+        jButtonAyuda.setPreferredSize(new java.awt.Dimension(39, 35));
+        jButtonAyuda.setRolloverEnabled(true);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -128,21 +144,27 @@ public class VistaSwing extends javax.swing.JFrame implements IVista{
             .addGroup(layout.createSequentialGroup()
                 .addGap(21, 21, 21)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabelAyuda)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabelIingrese)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextFieldNumero, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(jButtonJugar)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButtonReiniciar))
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(jLabelIntentos)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jTextFieldIntentos, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(95, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabelAyuda)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabelIingrese)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jTextFieldNumero, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addContainerGap(95, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jButtonJugar)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jButtonReiniciar))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addComponent(jLabelIntentos)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jTextFieldIntentos, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButtonAyuda, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(17, 17, 17))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -153,14 +175,15 @@ public class VistaSwing extends javax.swing.JFrame implements IVista{
                     .addComponent(jLabelIingrese))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabelAyuda)
-                .addGap(25, 25, 25)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelIntentos)
                     .addComponent(jTextFieldIntentos, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+                .addGap(33, 33, 33)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonJugar)
-                    .addComponent(jButtonReiniciar))
+                    .addComponent(jButtonReiniciar)
+                    .addComponent(jButtonAyuda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(24, 24, 24))
         );
 
@@ -168,6 +191,7 @@ public class VistaSwing extends javax.swing.JFrame implements IVista{
     }// </editor-fold>//GEN-END:initComponents
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButtonAyuda;
     private javax.swing.JButton jButtonJugar;
     private javax.swing.JButton jButtonReiniciar;
     private javax.swing.JLabel jLabelAyuda;
@@ -176,6 +200,6 @@ public class VistaSwing extends javax.swing.JFrame implements IVista{
     private javax.swing.JTextField jTextFieldIntentos;
     private javax.swing.JTextField jTextFieldNumero;
     // End of variables declaration//GEN-END:variables
-
+    
 }
 

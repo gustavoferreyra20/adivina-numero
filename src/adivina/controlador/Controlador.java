@@ -24,6 +24,7 @@ class Controlador {
         this.vista.addHandlerJugar( new HandlerJugar() );
         this.vista.addHandlerEnter( new HandlerEnter() );
         this.vista.addHandlerReiniciar( new HandlerReiniciar() );
+        this.vista.addHandlerAyuda( new HandlerAyuda() );
         this.vista.setIntentos(this.modelo.getIntentosRestantes());
         this.vista.iniciar();
     }
@@ -93,5 +94,16 @@ class Controlador {
         }
     }
     
+    private class HandlerAyuda implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            ayuda();
+        }
+    }
+    
+     private void ayuda() {
+            this.vista.mostrarAyuda(this.modelo.getAyuda());
+        }
     
 }
